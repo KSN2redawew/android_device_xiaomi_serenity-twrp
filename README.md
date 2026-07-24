@@ -1,5 +1,11 @@
 # TWRP device tree for Redmi A5
 
+## Thanks
+
+[rtyutechstudio](https://github.com/rtyutechstudio) for patch drm
+
+[Zyrexen](https://github.com/Zyrexen) for fstab and test twrp
+
 ## Build it yourself?
 
 ```shell
