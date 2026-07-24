@@ -1,6 +1,9 @@
 #add for board init.rc for recovery mode
 import /init.recovery.common.rc
 
+on early-init
+    write /sys/fs/selinux/enforce 0
+
 on fs
     start load_modules
 
@@ -14,3 +17,4 @@ service load_modules /system/bin/load_modules.sh
 on boot
     start boot-hal-1-0
     start health-hal-2-1
+	
