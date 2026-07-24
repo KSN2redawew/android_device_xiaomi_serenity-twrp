@@ -1,0 +1,2 @@
+androidboot.init_fatal_panic=true
+androidboot.dtbo_idx=0
