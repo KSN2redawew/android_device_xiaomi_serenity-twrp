@@ -1,0 +1,16 @@
+#add for board init.rc for recovery mode
+import /init.recovery.common.rc
+
+on fs
+    start load_modules
+
+service load_modules /system/bin/load_modules.sh
+    oneshot
+    disabled
+    user root
+    group root
+    seclabel u:r:recovery:s0
+
+on boot
+    start boot-hal-1-0
+    start health-hal-2-1
