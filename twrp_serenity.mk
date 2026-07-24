@@ -19,10 +19,10 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 
 $(call inherit-product, device/xiaomi/serenity/device.mk)
 
-PRODUCT_DEVICE := Serenity
+PRODUCT_DEVICE := serenity
 PRODUCT_NAME := twrp_serenity
 PRODUCT_BRAND := Xiaomi
-PRODUCT_MODEL := Serenity
+PRODUCT_MODEL := serenity
 PRODUCT_MANUFACTURER := infinix
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
