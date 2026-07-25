@@ -13,7 +13,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<manifest version="1.0" type="device">
+<manifest version="4.0" type="device">
     <hal format="aidl">
         <name>android.hardware.drm</name>
         <version>1</version>

@@ -1,4 +1,5 @@
 # hi im zyrexen ;)
+
 /boot             emmc      /dev/block/by-name/boot              flags=display="Boot";slotselect;backup=1;flashimg=1
 /init_boot        emmc      /dev/block/by-name/init_boot         flags=display="Init Boot";slotselect;backup=1;flashimg=1
 /vendor_boot      emmc      /dev/block/by-name/vendor_boot       flags=display="Vendor Boot";slotselect;backup=1;flashimg=1
@@ -15,12 +16,10 @@
 
 /super            emmc      /dev/block/by-name/super             flags=display="Super";backup=1;flashimg=1
 
-/metadata         ext4      /dev/block/by-name/metadata          flags=display="Metadata"
-/data             f2fs      /dev/block/by-name/userdata          flags=display="Data";backup=1
-/persist          ext4      /dev/block/by-name/persist              flags=display="Persist";backup=1
+/persist          ext4      /dev/block/by-name/persist           flags=display="Persist";backup=1
+/persist_image    emmc      /dev/block/by-name/persist           flags=display="Persist Image";backup=1;flashimg=1
 /rescue           ext4      /dev/block/by-name/rescue            flags=display="Rescue Partition";backup=1
 /misc             emmc      /dev/block/by-name/misc              flags=display="Misc";backup=1
-/persist          emmc      /dev/block/by-name/persist           flags=display="Persist";backup=1;flashimg=1
 /logo             emmc      /dev/block/by-name/logo              flags=display="Boot Logo";slotselect;backup=1;flashimg=1
 /fbootlogo        emmc      /dev/block/by-name/fbootlogo         flags=display="Fastboot Logo";backup=1;flashimg=1
 
@@ -59,13 +58,13 @@
 /sysdumpdb        emmc      /dev/block/by-name/sysdumpdb         flags=display="Sysdump DB";backup=1
 /uboot_log        emmc      /dev/block/by-name/uboot_log         flags=display="uBoot Log";backup=1
 
-/system_image     emmc      /dev/block/mapper/system             flags=display="System Image";logical;slotselect;flashimg=1
-/system_ext_image emmc      /dev/block/mapper/system_ext         flags=display="System_EXT Image";logical;slotselect;flashimg=1
-/vendor_image     emmc      /dev/block/mapper/vendor             flags=display="Vendor Image";logical;slotselect;flashimg=1
-/product_image    emmc      /dev/block/mapper/product            flags=display="Product Image";logical;slotselect;flashimg=1
-/odm_image        emmc      /dev/block/mapper/odm                flags=display="ODM Image";logical;slotselect;flashimg=1
-/vendor_dlkm_image emmc     /dev/block/mapper/vendor_dlkm        flags=display="Vendor_DLKM Image";logical;slotselect;flashimg=1
-/system_dlkm_image emmc     /dev/block/mapper/system_dlkm        flags=display="System_DLKM Image";logical;slotselect;flashimg=1
+/system_image     emmc      /dev/block/mapper/system             flags=display="System Image";logical;backup=1;flashimg=1
+/system_ext_image emmc      /dev/block/mapper/system_ext         flags=display="System_EXT Image";logical;backup=1;flashimg=1
+/vendor_image     emmc      /dev/block/mapper/vendor             flags=display="Vendor Image";logical;backup=1;flashimg=1
+/product_image    emmc      /dev/block/mapper/product            flags=display="Product Image";logical;backup=1;flashimg=1
+/odm_image        emmc      /dev/block/mapper/odm                flags=display="ODM Image";logical;backup=1;flashimg=1
+/vendor_dlkm_image emmc     /dev/block/mapper/vendor_dlkm        flags=display="Vendor_DLKM Image";logical;backup=1;flashimg=1
+/system_dlkm_image emmc     /dev/block/mapper/system_dlkm        flags=display="System_DLKM Image";logical;backup=1;flashimg=1
 
 /external_sd      vfat      /dev/block/mmcblk1p1  /dev/block/mmcblk1  flags=display="MicroSD Card";storage;wipeingui;removable
 /usb_otg          auto      /dev/block/sda1       /dev/block/sda      flags=display="USB-OTG";storage;wipeingui;removable
