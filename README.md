@@ -28,7 +28,7 @@ If there is no error, vendor_boot.img will be found in `out/target/product/seren
 
 Works:
 
-- [NO] ADB
+- [X] ADB
 - [X] Display
 - [NO] Decryption
 - [NO] Fasbootd 
