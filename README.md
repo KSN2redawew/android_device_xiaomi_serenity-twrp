@@ -10,6 +10,7 @@ Ported from [KSN2redawew/android_device_xiaomi_serenity-twrp](https://github.com
 
 [Chillax](https://github.com/Chillax1143) Big Thanks (fixed full device tree and porting to PBRP)
 
+[danilaim](https://github.com/danilaim) Tester
 ## Build it yourself?
 
 ```shell
