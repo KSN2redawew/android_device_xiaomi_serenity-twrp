@@ -8,7 +8,7 @@ Ported from [KSN2redawew/android_device_xiaomi_serenity-twrp](https://github.com
 
 [Zyrexen](https://github.com/Zyrexen) for fstab and test twrp
 
-[Chillax](https://github.com/Chillax1143) Big Thanks (fixed full device tree)
+[Chillax](https://github.com/Chillax1143) Big Thanks (fixed full device tree and porting to PBRP)
 
 ## Build it yourself?
 
