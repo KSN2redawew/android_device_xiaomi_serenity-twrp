@@ -8,6 +8,8 @@ Ported from [KSN2redawew/android_device_xiaomi_serenity-twrp](https://github.com
 
 [Zyrexen](https://github.com/Zyrexen) for fstab and test twrp
 
+[Chillax](https://github.com/Chillax1143) Big Thanks (fixed full device tree)
+
 ## Build it yourself?
 
 ```shell
@@ -15,12 +17,12 @@ mkdir pbrp && cd pbrp
 repo init -u https://github.com/PitchBlackRecoveryProject/manifest_pb.git -b android-12.1
 repo sync
 (patch drm (bootable/recovery/minuitwrp/graphics_drm.cpp))
-git clone --depth=1 <this device tree> device/xiaomi/serenity
+git clone --depth=1 https://github.com/KSN2redawew/android_device_xiaomi_serenity-twrp device/xiaomi/serenity
 ```
 
 ```shell
 source build/envsetup.sh
-lunch omni_serenity-eng
+lunch pb_serenity-eng
 m vendorbootimage
 ```
 
