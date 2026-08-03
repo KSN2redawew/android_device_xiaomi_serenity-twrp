@@ -1,0 +1,19 @@
+# Android fstab file.
+#<src>                                    <mnt_point>    <type>    <mnt_flags and options>    <fs_mgr_flags>
+
+system              /system       erofs   ro      wait,logical
+system_ext          /system_ext   erofs   ro      wait,logical
+vendor              /vendor       erofs   ro      wait,logical
+odm                 /odm          erofs   ro      wait,logical
+product             /product      erofs   ro      wait,logical
+vendor_dlkm         /vendor_dlkm  erofs   ro      wait,logical
+system_dlkm         /system_dlkm  erofs   ro      wait,logical
+
+/dev/block/by-name/metadata     /metadata      ext4   nodev,noatime,nosuid,errors=panic      wait,formattable
+/dev/block/by-name/userdata     /data          f2fs   noatime,nosuid,nodev,discard,gc_merge  wait,check,formattable,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,quota,reservedsize=128M
+/dev/block/by-name/rescue       /mnt/rescue    ext4   rw,noatime,nosuid,nodev                wait,check
+/dev/block/by-name/misc         /misc          emmc   defaults                               defaults
+
+/dev/block/by-name/boot         /boot          emmc   defaults                               slotselect
+/dev/block/by-name/init_boot    /init_boot     emmc   defaults                               slotselect
+/dev/block/by-name/vendor_boot  /vendor_boot   emmc   defaults                               slotselect
