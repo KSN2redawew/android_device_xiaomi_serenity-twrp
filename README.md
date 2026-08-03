@@ -36,7 +36,7 @@ Works:
 
 - [X] ADB
 - [X] Display
-- [IDK] Decryption
+- [NO] Decryption
 - [IDK] Fasbootd
 - [X] Flashing
 - [X] MTP
