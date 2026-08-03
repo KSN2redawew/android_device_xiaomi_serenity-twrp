@@ -26,9 +26,9 @@ $(call inherit-product, $(DEVICE_PATH)/device.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := serenity
-PRODUCT_NAME := omni_serenity
+PRODUCT_NAME := pb_serenity
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := serenity
-PRODUCT_MANUFACTURER := infinix
+PRODUCT_MANUFACTURER := Xiaomi
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
