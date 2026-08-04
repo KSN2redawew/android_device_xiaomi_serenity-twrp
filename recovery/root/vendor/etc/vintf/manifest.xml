@@ -122,6 +122,7 @@
     </hal>
     <hal format="aidl">
         <name>vendor.sprd.hardware.enhance</name>
+        <version>1</version>
         <interface>
             <name>IEnhance</name>
             <instance>default</instance>
@@ -130,10 +131,12 @@
     </hal>
     <hal format="aidl">
         <name>vendor.sprd.hardware.network</name>
+        <version>1</version>
         <fqname>INetworkControl/default</fqname>
     </hal>
     <hal format="aidl">
         <name>vendor.xiaomi.hardware.fx.tunnel</name>
+        <version>1</version>
         <interface>
             <name>IMiFxTunnel</name>
             <instance>default</instance>
