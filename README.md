@@ -38,7 +38,7 @@ Works:
 - [X] ADB
 - [X] Display
 - [NO] Decryption
-- [IDK] Fasbootd
+- [X] Fasbootd
 - [X] Flashing
 - [X] MTP
 - [X] Sideload
