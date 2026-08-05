@@ -1,0 +1,61 @@
+# Board-specific recovery init
+import /init.recovery.common.rc
+
+on early-init
+    write /sys/fs/selinux/enforce 0
+
+on fs
+    setprop crypto.ready 1
+
+on boot
+    start boot-hal-1-2
+    start vendor.sprd.boot-hal-1-2
+    start health-hal-2-1
+
+on property:hwservicemanager.ready=true
+    # The stock Android 15 KeyMint binds its key blobs to the configured OS
+    # version and system security patch. PBRP is based on Android 12.1, so
+    # advertise the stock values before KeyMint opens the metadata key.
+    exec_start set-keymint-os-version
+    exec_start set-keymint-os-patch
+
+    # KeyMint/Gatekeeper register as AIDL/HIDL services, so they must start
+    # only after hwservicemanager is up. Keystore2 (started on late-init by its
+    # own /system/etc/init/keystore2.rc) waits up to 5s for KeyMint; starting
+    # here is early enough and fixes the previous NAME_NOT_FOUND panic.
+    start vendor.keymint-unisoc-2.0
+    start vendor.gatekeeper-1-0
+
+# Keystore2 is started by /system/etc/init/keystore2.rc on late-init.
+# Do not redefine it here: duplicate service definitions are rejected by init.
+
+service set-keymint-os-version /system/bin/resetprop ro.build.version.release 15
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
+service set-keymint-os-patch /system/bin/resetprop ro.build.version.security_patch 2026-06-01
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
+service vendor.keymint-unisoc-2.0 /vendor/bin/hw/android.hardware.security.keymint@2.0-unisoc.service.trusty
+    class early_hal
+    user system
+    group system drmrpc
+    # Recovery's linker config searches only /system/lib64 by default. Keep
+    # the stock KeyMint ABI together by preferring its vendor libraries.
+    setenv LD_LIBRARY_PATH /vendor/lib64:/system/lib64
+    disabled
+    seclabel u:r:recovery:s0
+
+service vendor.gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service.trusty
+    class hal
+    user system
+    group system
+    disabled
+    seclabel u:r:recovery:s0

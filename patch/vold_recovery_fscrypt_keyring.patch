@@ -1,0 +1,26 @@
+diff --git a/system/vold/KeyUtil.cpp b/system/vold/KeyUtil.cpp
+--- a/system/vold/KeyUtil.cpp
++++ b/system/vold/KeyUtil.cpp
+@@ -148,9 +148,20 @@ static std::string buildLegacyKeyName(const std::string& prefix, const std::string
+ // old to support FS_IOC_ADD_ENCRYPTION_KEY and FS_IOC_REMOVE_ENCRYPTION_KEY.
+ static bool fscryptKeyring(key_serial_t* device_keyring) {
+     *device_keyring = keyctl_search(KEY_SPEC_SESSION_KEYRING, "keyring", "fscrypt", 0);
+-    if (*device_keyring == -1) {
+-        PLOG(ERROR) << "Unable to find device keyring";
++    if (*device_keyring != -1) return true;
++
++    // Android init normally creates this keyring while mounting encrypted
++    // userdata.  Recovery mounts metadata-encrypted userdata from its own
++    // process, so that init path is skipped.  Create the inherited session
++    // keyring on demand before installing the provisioning copy of the key.
++    if (errno == ENOKEY) {
++        *device_keyring =
++                add_key("keyring", "fscrypt", nullptr, 0, KEY_SPEC_SESSION_KEYRING);
++    }
++    if (*device_keyring == -1) {
++        PLOG(ERROR) << "Unable to find or create device keyring";
+         return false;
+     }
++    LOG(INFO) << "Created fscrypt device keyring " << *device_keyring;
+     return true;
+ }

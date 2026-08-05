@@ -1,0 +1,65 @@
+# SPDX-FileCopyrightText: 2016-2023 Unisoc (Shanghai) Technologies Co., Ltd
+# SPDX-License-Identifier: LicenseRef-Unisoc-General-1.0
+
+#
+## Please include it in /init.recovery.${ro.hardware}.rc
+#
+
+service healthd /system/bin/healthd -r
+    critical
+    seclabel u:r:healthd:s0
+
+service create_splloader_dual_slot_byname_path /system/bin/create_splloader_dual_slot_byname_path.sh
+    user root
+    group root system
+    disabled
+    oneshot
+    # The stock-only create_spl_link_recovery domain is absent from the
+    # recovery policy, so init otherwise rejects setexeccon() and skips this.
+    seclabel u:r:recovery:s0
+
+on init
+    # Apply strict SELinux checking of PROT_EXEC on mmap/mprotect calls.
+    write /sys/fs/selinux/checkreqprot 0
+    start healthd
+    start create_splloader_dual_slot_byname_path
+
+    export PATH /sbin:/system/bin:/vendor/bin
+    export SECONDARY_STORAGE /storage/sdcard0
+
+    mkdir /storage
+    mkdir /storage/sdcard1
+    mkdir /storage/sdcard0
+    symlink /storage/sdcard0 /mnt/sdcard
+
+    mkdir /systeminfo 0777 system system
+
+    loglevel 7
+
+    # Recovery USB is configured exclusively by /init.recovery.usb.rc.
+    # A second ConfigFS setup here races with it and can leave the UDC busy.
+
+on boot
+    write /sys/block/mmcblk0boot0/force_ro 0
+    write /sys/block/mmcblk0boot1/force_ro 0
+
+    chmod 660 /sys/class/power_supply/battery/charger.0/stop_charge
+    chmod 660 /sys/class/power_supply/battery/charger.0/jeita_control
+    chmod 660 /sys/class/power_supply/battery/input_current_limit
+    chmod 660 /sys/class/power_supply/battery/constant_charge_current
+    chmod 660 /sys/class/power_supply/battery/charger.0/keep_awake
+
+on property:ro.bootmode=recovery
+    class_start recovery
+
+# for grf
+
+on property:ro.odm.build.fingerprint=*
+    setprop ro.vendor.build.fingerprint ${ro.odm.build.fingerprint}
+
+on property:ro.product.device=*
+    setprop ro.product.vendor.device ${ro.product.device}
+on property:ro.product.model=*
+    setprop ro.product.vendor.model ${ro.product.model}
+on property:ro.product.name=*
+    setprop ro.product.vendor.name ${ro.product.name}

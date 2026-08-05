@@ -1,0 +1,25 @@
+# Android fstab file.
+#<src>                                    <mnt_point>    <type>    <mnt_flags and options>    <fs_mgr_flags>
+
+system              /system       erofs   ro      wait,logical
+system_ext          /system_ext   erofs   ro      wait,logical
+vendor              /vendor       erofs   ro      wait,logical
+odm                 /odm          erofs   ro      wait,logical
+product             /product      erofs   ro      wait,logical
+vendor_dlkm         /vendor_dlkm  erofs   ro      wait,logical
+system_dlkm         /system_dlkm  erofs   ro      wait,logical
+
+/dev/block/by-name/metadata     /metadata      f2fs   nodev,noatime,nosuid                   wait,formattable,check
+/dev/block/by-name/metadata     /metadata      ext4   nodev,noatime,nosuid,errors=panic      wait,formattable,check
+/dev/block/by-name/userdata     /data          f2fs   noatime,nosuid,nodev,discard,gc_merge,atgc,reserve_root=32768,resgid=1065,inline_xattr,inline_data,inlinecrypt,fsync_mode=nobarrier  latemount,wait,quota,check,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,reservedsize=128M,checkpoint=fs,formattable
+/dev/block/by-name/prodnv       /mnt/vendor    ext4   noatime,nosuid,nodev,nomblk_io_submit,noauto_da_alloc  wait,check
+/dev/block/by-name/cache        /cache         f2fs   noatime,nosuid,nodev,discard            wait,check,formattable
+/dev/block/by-name/cache        /cache         ext4   noatime,nosuid,nodev,nomblk_io_submit,noauto_da_alloc  wait,check,formattable
+/dev/block/by-name/rescue       /mnt/rescue    ext4   rw,seclabel,noatime,nosuid,nodev,discard check
+/dev/block/by-name/misc         /misc          emmc   defaults                               defaults
+/dev/block/by-name/blackbox     /blackbox      f2fs   noatime,nosuid,nodev,discard            check
+/dev/block/by-name/blackbox     /blackbox      ext4   noatime,nosuid,nodev,nomblk_io_submit,noauto_da_alloc  check
+
+/dev/block/by-name/boot         /boot          emmc   defaults                               slotselect
+/dev/block/by-name/init_boot    /init_boot     emmc   defaults                               slotselect
+/dev/block/by-name/vendor_boot  /vendor_boot   emmc   defaults                               slotselect

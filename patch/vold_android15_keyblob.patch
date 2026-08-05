@@ -1,0 +1,24 @@
+diff --git a/system/vold/Keymaster.cpp b/system/vold/Keymaster.cpp
+--- a/system/vold/Keymaster.cpp
++++ b/system/vold/Keymaster.cpp
+@@ -199,7 +199,7 @@ KeymasterOperation Keymaster::begin(const std::string& key, const km::Authorizati
+             std::optional<std::vector<uint8_t>>(std::vector<uint8_t>(key.begin(), key.end()));
+ 
+     ks2::CreateOperationResponse cor;
+-    auto rc = securityLevel->createOperation(keyDesc, inParams.vector_data(), false, &cor);
++    auto rc = securityLevel->createOperation(keyDesc, inParams.vector_data(), true, &cor);
+     if (logKeystore2ExceptionIfPresent(rc, "createOperation")) {
+         if (rc.getExceptionCode() == EX_SERVICE_SPECIFIC)
+             return KeymasterOperation((km::ErrorCode)rc.getServiceSpecificError());
+diff --git a/system/vold/KeyStorage.cpp b/system/vold/KeyStorage.cpp
+--- a/system/vold/KeyStorage.cpp
++++ b/system/vold/KeyStorage.cpp
+@@ -367,7 +367,7 @@ static KeymasterOperation BeginKeymasterOp(Keymaster& keymaster, const std::string
+     if (!opHandle) return opHandle;
+ 
+     // If key blob wasn't upgraded, nothing left to do.
+-    // if (!opHandle.getUpgradedBlob()) return opHandle;
++    if (!opHandle.getUpgradedBlob()) return opHandle;
+ 
+     // if (already_upgraded) {
+     //     LOG(ERROR) << "Unexpected case; already-upgraded key " << upgraded_blob_file

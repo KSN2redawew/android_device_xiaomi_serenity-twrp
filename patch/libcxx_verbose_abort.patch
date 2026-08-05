@@ -1,0 +1,18 @@
+diff --git a/external/libcxx/src/debug.cpp b/external/libcxx/src/debug.cpp
+--- a/external/libcxx/src/debug.cpp
++++ b/external/libcxx/src/debug.cpp
+@@ -33,6 +33,14 @@ bool __libcpp_set_debug_function(__libcpp_debug_function_type __func) {
+   return true;
+ }
+ 
++// Newer vendor NDK libraries reference this libc++ ABI entry point. Recovery
++// uses an older libc++ which predates it, so provide the compatible abort
++// handler expected by the stock KeyMint AIDL libraries.
++_LIBCPP_NORETURN _LIBCPP_EXPORTED_FROM_ABI
++void __libcpp_verbose_abort(char const*, ...) {
++  std::abort();
++}
++
+ _LIBCPP_NORETURN void __libcpp_abort_debug_function(__libcpp_debug_info const& info) {
+   std::fprintf(stderr, "%s\n", make_what_str(info).c_str());
+   std::abort();

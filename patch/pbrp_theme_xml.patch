@@ -1,0 +1,78 @@
+diff --git a/bootable/recovery/gui/theme/common/languages/de.xml b/bootable/recovery/gui/theme/common/languages/de.xml
+--- a/bootable/recovery/gui/theme/common/languages/de.xml
++++ b/bootable/recovery/gui/theme/common/languages/de.xml
+@@ -677,7 +677,7 @@
+ 		<string name="change_fs_err">Fehler beim Ändern des Dateisystems.</string>
+ 		<string name="theme_ver_err">Theme-Version inkompatibel zu TWRP-Version. Standard-Theme wird verwendet.</string>
+ 		<string name="up_a_level">(Übergeordneter Ordner)</string>
+-		<string name="install_reboot"version="2">Neustart in %tw_sleep% Sekunden</string>
++		<string name="install_reboot" version="2">Neustart in %tw_sleep% Sekunden</string>
+ 		<string name="adbbackup_error">Fehler während ADB Backup. Abbruch..."</string>
+ 		<string name="adbbackup_control_error">Kein Zugriff auf ADB Control Channel</string>
+ 		<string name="twrp_adbbu_option">--twrp option wird für ADB Backup benötigt</string>
+diff --git a/bootable/recovery/gui/theme/common/languages/en.xml b/bootable/recovery/gui/theme/common/languages/en.xml
+--- a/bootable/recovery/gui/theme/common/languages/en.xml
++++ b/bootable/recovery/gui/theme/common/languages/en.xml
+@@ -946,8 +946,8 @@
+ 		<string name="pb_thanks">Thank you for using PitchBlack Recovery..!</string>
+ 		<string name="pb_donate">Consider donating, if you like it</string>
+ 		<string name="pb_coming_soon">Coming Soon....!</string>
+ 		<string name="restore_system_context">Unable to get default context for {1} -- Android may not boot.</string>
+-		<string name="unmap_super_devices">Unmap Super Devices</strings>
+-		<string name="unmap_super_devices_dynamic">Unmap Super Devices (Dynamic only)</strings>
++		<string name="unmap_super_devices">Unmap Super Devices</string>
++		<string name="unmap_super_devices_dynamic">Unmap Super Devices (Dynamic only)</string>
+ 		<string name="unmap_super_devices_confirm">Unmap all Super Devices?</string>
+ 		<string name="unmapping_super_devices">Unmapping Super Devices...</string>
+ 		<string name="unmap_super_devices_complete">Unmapped all Super Devices</string>
+diff --git a/bootable/recovery/gui/theme/common/portrait.xml b/bootable/recovery/gui/theme/common/portrait.xml
+--- a/bootable/recovery/gui/theme/common/portrait.xml
++++ b/bootable/recovery/gui/theme/common/portrait.xml
+@@ -1,4 +1,3 @@
+-<description>Copyright 2018-2020 PitchBlackRecoveryProject</description>
+ <?xml version="1.0"?>
+ <recovery>
+ 	<styles>
+@@ -5273,7 +5272,7 @@
+ 			</text>
+ 
+ 			<button style="main_button_half_height_full">
+-				<contitions>
++				<conditions>
+ 					<condition var1="tw_fm_isfolder" var2="0"/>
+ 					<condition var1="pb_file_extn" var2="zip"/>
+ 				</conditions>
+diff --git a/bootable/recovery/gui/theme/portrait_hdpi/extras.xml b/bootable/recovery/gui/theme/portrait_hdpi/extras.xml
+--- a/bootable/recovery/gui/theme/portrait_hdpi/extras.xml
++++ b/bootable/recovery/gui/theme/portrait_hdpi/extras.xml
+@@ -1,4 +1,3 @@
+-<description>Copyright 2018-2020 PitchBlackRecoveryProject</description>
+ <?xml version="1.0"?>
+ <recovery>
+     <pages>
+diff --git a/bootable/recovery/gui/theme/portrait_hdpi/splash.xml b/bootable/recovery/gui/theme/portrait_hdpi/splash.xml
+--- a/bootable/recovery/gui/theme/portrait_hdpi/splash.xml
++++ b/bootable/recovery/gui/theme/portrait_hdpi/splash.xml
+@@ -2,7 +2,7 @@
+ <recovery>
+ 	<details>
+ 		<resolution width="1080" height="1920"/>
+-		<author>TeamWin & Reza Adi</author>
++		<author>TeamWin &amp; Reza Adi</author>
+ 		<title>PitchBlack Recovery Project</title>
+ 		<description>splash screen</description>
+ 		<themeversion>{themeversion}</themeversion>
+diff --git a/bootable/recovery/gui/theme/portrait_hdpi/ui.xml b/bootable/recovery/gui/theme/portrait_hdpi/ui.xml
+--- a/bootable/recovery/gui/theme/portrait_hdpi/ui.xml
++++ b/bootable/recovery/gui/theme/portrait_hdpi/ui.xml
+@@ -1,8 +1,7 @@
+-<description>Copyright 2018-2020 PitchBlackRecoveryProject</description>
+ <?xml version="1.0"?>
+ <recovery>
+ 	<details>
+ 		<resolution width="1080" height="1920"/>
+-		<author>TeamWin & PBRP</author>
++		<author>TeamWin &amp; PBRP</author>
+ 		<title>PitchBlack Recovery Profeject</title>
+ 		<description>Copyright 2018-2020 PitchBlackRecoveryProject</description>
+ 		<preview>preview.png</preview>
